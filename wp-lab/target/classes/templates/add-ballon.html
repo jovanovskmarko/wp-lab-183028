@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<form th:method="POST" th:action="@{'/balloons/add/{id}' (id = ${balloon?.getId()})}">
+    <div>
+        <div>
+            <label>Name:</label><input type="text" name="color"
+                                       th:value=" ${balloon?.getName()}">
+        </div>
+
+        <div>
+            <label>Description:</label><input type="text" name="description"
+                                              th:value="${balloon?.getDescription()}">
+        </div>
+        <div>
+            <label>Name:</label>
+            <select name="manufacturer">
+                <option th:selected="${balloon != null && balloon.getManufacturer().getId() == man.getId() }"
+                        th:each="man : ${manufacturers}"
+                        th:text="${man.getName()}"
+                        th:value="${man.getId()}">
+                </option>
+            </select>
+        </div>
+    </div>
+    <input type="submit">
+</form>
+</body>
+</html>

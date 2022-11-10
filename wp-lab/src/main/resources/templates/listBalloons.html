@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Balloon Order page - Welcome and choose a Balloon</title>
+    <style type="text/css">
+        body {
+            width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to our Balloon Shop App</h1>
+</header>
+<main>
+    <form method="POST" th:action="@{'/list'}">
+        <h2>Choose balloon:</h2>
+        <table>
+            <thead>
+            <tr>
+                <td>Name</td>
+                <td>Description</td>
+                <td>Manufacturer</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="balloon: ${balloonList}">
+                <td><input th:text="${balloon.getName()}" type="radio" name="color" th:value="${balloon.getName()}">
+                </td>
+                <td th:text="${balloon.getDescription()}"></td>
+                <td th:text="${balloon.getManufacturer() != null} ? ${balloon.getManufacturer().getName()} : 'No Manufacturer'"></td>
+                <td>
+                    <a th:href="@{'/balloons/delete/{id}' (id=${balloon.getId()})}">Delete </a>
+                    <a th:href="@{'/balloons/edit-form/{id}' (id=${balloon.getId()})}"> Edit </a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <div>
+            <a th:href="@{'balloons/add-form'}">Add new balloon</a>
+        </div>
+        <input type="submit">
+    </form>
+
+</main>
+</body>
+</html>

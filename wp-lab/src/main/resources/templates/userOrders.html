@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table>
+    <thead>
+    <tr>
+        <td>Color</td>
+        <td>Client Name</td>
+        <td>Client Address</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="order : ${orders}">
+        <td th:text="${order.balloonColor}"></td>
+        <td th:text="${order.clientName}"></td>
+        <td th:text="${order.clientAddress}"></td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{'/ConfirmationInfo'}">Get Back</a>
+
+
+</body>
+</html>
